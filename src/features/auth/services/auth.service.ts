@@ -102,11 +102,18 @@ export class AuthService implements IAuthService {
   logoutAgent(): Promise<Agent> {
     throw new Error('Method not implemented.');
   }
-  getAgentById(id: string): Promise<Agent> {
-    throw new Error('Method not implemented.');
+  
+  async getAgentById(id: string): Promise<Agent> {
+    const agent = await this.repository.findAgentById(id);
+    if (!agent) {
+      throw new NotFoundError('Agent not found');
+    }
+    return agent;
   }
+
+
   getAllAgents(): Promise<Agent[]> {
-    throw new Error('Method not implemented.');
+    return this.repository.findAllAgents();
   }
   deleteAgent(id: string): Promise<Agent> {
     throw new Error('Method not implemented.');
