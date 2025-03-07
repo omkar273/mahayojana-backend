@@ -20,7 +20,7 @@ export class ApplicationController {
       const data = new CreateApplicationDTO(req.body);
       const result = await this.service.createApplication(data);
       res.status(201).json(result);
-    })
+    }),
   ];
 
   findById = [
@@ -33,7 +33,7 @@ export class ApplicationController {
         return res.status(404).json({ error: 'Application not found' });
       }
       res.json(result);
-    })
+    }),
   ];
 
   update = [
@@ -48,7 +48,7 @@ export class ApplicationController {
         return res.status(404).json({ error: 'Application not found' });
       }
       res.json(result);
-    })
+    }),
   ];
 
   delete = [
@@ -61,7 +61,7 @@ export class ApplicationController {
         return res.status(404).json({ error: 'Application not found' });
       }
       res.status(204).send();
-    })
+    }),
   ];
 
   list = [
@@ -71,6 +71,6 @@ export class ApplicationController {
       const filter = req.query;
       const results = await this.service.listApplications(filter);
       res.json(results);
-    })
+    }),
   ];
 }

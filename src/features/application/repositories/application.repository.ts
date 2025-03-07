@@ -1,5 +1,8 @@
 import { Application } from '../entities/application.entity';
-import { ApplicationModel, IApplicationDocument } from '../models/application.model';
+import {
+  ApplicationModel,
+  IApplicationDocument,
+} from '../models/application.model';
 import { IApplicationRepository } from '../interfaces/i-application.repository';
 import { ApplicationMapper } from '../mappers/application.mapper';
 import { FilterQuery } from 'mongoose';
@@ -17,20 +20,29 @@ export class ApplicationRepository implements IApplicationRepository {
   }
 
   async findOne(filter: Partial<Application>): Promise<Application | null> {
-    const modelFilter = ApplicationMapper.toModel(filter) as FilterQuery<IApplicationDocument>;
+    const modelFilter = ApplicationMapper.toModel(
+      filter,
+    ) as FilterQuery<IApplicationDocument>;
     const found = await ApplicationModel.findOne(modelFilter);
     return found ? ApplicationMapper.toEntity(found) : null;
   }
 
   async findMany(filter: Partial<Application>): Promise<Application[]> {
-    const modelFilter = ApplicationMapper.toModel(filter) as FilterQuery<IApplicationDocument>;
+    const modelFilter = ApplicationMapper.toModel(
+      filter,
+    ) as FilterQuery<IApplicationDocument>;
     const found = await ApplicationModel.find(modelFilter);
     return ApplicationMapper.toEntities(found);
   }
 
-  async update(id: string, data: Partial<Application>): Promise<Application | null> {
+  async update(
+    id: string,
+    data: Partial<Application>,
+  ): Promise<Application | null> {
     const modelData = ApplicationMapper.toModel(data);
-    const updated = await ApplicationModel.findByIdAndUpdate(id, modelData, { new: true });
+    const updated = await ApplicationModel.findByIdAndUpdate(id, modelData, {
+      new: true,
+    });
     return updated ? ApplicationMapper.toEntity(updated) : null;
   }
 
@@ -40,7 +52,9 @@ export class ApplicationRepository implements IApplicationRepository {
   }
 
   async exists(filter: Partial<Application>): Promise<boolean> {
-    const modelFilter = ApplicationMapper.toModel(filter) as FilterQuery<IApplicationDocument>;
+    const modelFilter = ApplicationMapper.toModel(
+      filter,
+    ) as FilterQuery<IApplicationDocument>;
     const result = await ApplicationModel.exists(modelFilter);
     return !!result;
   }

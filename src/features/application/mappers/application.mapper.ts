@@ -21,10 +21,12 @@ export class ApplicationMapper {
   }
 
   static toEntities(docs: IApplicationDocument[]): Application[] {
-    return docs.map(doc => this.toEntity(doc));
+    return docs.map((doc) => this.toEntity(doc));
   }
 
-  static toModels(entities: Partial<Application>[]): Partial<IApplicationDocument>[] {
-    return entities.map(entity => this.toModel(entity));
+  static toModels(
+    entities: Partial<Application>[],
+  ): Partial<IApplicationDocument>[] {
+    return entities.map((entity) => this.toModel(entity));
   }
 }

@@ -21,7 +21,10 @@ export class ApplicationService implements IApplicationService {
     return this.repository.findById(id);
   }
 
-  async updateApplication(id: string, data: UpdateApplicationDTO): Promise<Application | null> {
+  async updateApplication(
+    id: string,
+    data: UpdateApplicationDTO,
+  ): Promise<Application | null> {
     data.validate();
     return this.repository.update(id, data);
   }
@@ -30,7 +33,9 @@ export class ApplicationService implements IApplicationService {
     return this.repository.delete(id);
   }
 
-  async listApplications(filter?: Partial<Application>): Promise<Application[]> {
+  async listApplications(
+    filter?: Partial<Application>,
+  ): Promise<Application[]> {
     return this.repository.findMany(filter || {});
   }
 }

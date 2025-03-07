@@ -102,7 +102,7 @@ export class AuthService implements IAuthService {
   logoutAgent(): Promise<Agent> {
     throw new Error('Method not implemented.');
   }
-  
+
   async getAgentById(id: string): Promise<Agent> {
     const agent = await this.repository.findAgentById(id);
     if (!agent) {
@@ -110,7 +110,6 @@ export class AuthService implements IAuthService {
     }
     return agent;
   }
-
 
   getAllAgents(): Promise<Agent[]> {
     return this.repository.findAllAgents();

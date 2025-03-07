@@ -27,7 +27,6 @@ export class CreateApplicationDTO implements Partial<Application> {
       throw new BadRequestError('Expiry date is required');
     }
 
-    // Add validation logic here 
+    // Add validation logic here
   }
 }
-
